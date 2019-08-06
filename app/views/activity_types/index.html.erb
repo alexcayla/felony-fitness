@@ -1,25 +1,12 @@
+#Need helpers for: day links, individual activity pages,
+
+
 <% @activity_types.each do |activity_type| %>
     <h2><%= link_to activity_type.name, activity_type %></h2>
     <%= activity_type.description %>
     <%= activity_type.duration %>
     <%= activity_type.price %>
     <%= activity_type.restrictions %>
-    <%= activity_type.type %>
+    <%= activity_type.kind %>
     <%= activity_type.sport %>
 <% end %>
-
-<!-- <div class="container">
-  <div class="row">
-    <%# @cocktails.each do |cocktail| %>
-      <div class="col-12 col-md-6 col-lg-3">
-        <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('https://source.unsplash.com/500x400/?cocktail');">
-          <div class="card-description">
-            <h2><%#= cocktail.name %></h2>
-          </div>
-          <%#= link_to "", cocktail_path(cocktail), class: 'card-link' %>
-        </div>
-      </div>
-    <%# end %>
-  </div>
-</div>
- -->
