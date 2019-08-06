@@ -5,6 +5,7 @@ class ActivityTypesController < ApplicationController
 
   def show
     @activity_type = ActivityType.find(params[:id])
+    @scheduled_activities = ScheduledActivity.where(activity_type_id: params[:id])
   end
 
   def new
