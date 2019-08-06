@@ -10,7 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_06_101850) do
+
+
+ActiveRecord::Schema.define(version: 2019_08_06_055835) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,10 +23,10 @@ ActiveRecord::Schema.define(version: 2019_08_06_101850) do
     t.integer "duration"
     t.integer "price"
     t.text "restrictions"
-    t.string "type"
     t.string "sport"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "kind"
   end
 
   create_table "bookings", force: :cascade do |t|

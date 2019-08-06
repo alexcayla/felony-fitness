@@ -5,5 +5,6 @@ class ActivityType < ApplicationRecord
   validates :duration, presence: true
   validates :price, presence: true
   validates :restrictions, presence: true
+  validates :kind, presence: true
   validates :sport, presence: true
 end
