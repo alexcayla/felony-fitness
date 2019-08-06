@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <h1>Create a new activity type</h1>
+
+      <%= simple_form_for @activity_type do |f| %>
+        <%= f.input :name %>
+        <%= f.input :description %>
+        <%= f.input :duration %>
+        <%= f.input :price %>
+        <%= f.input :restrictions %>
+        <%= f.input :type %>
+        <%= f.input :sport %>
+        <%= f.button :submit, class: 'btn btn-primary' %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
