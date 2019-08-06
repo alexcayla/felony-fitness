@@ -1,39 +1,8 @@
-run 'pgrep spring | xargs kill -9'
+system 'pgrep spring | xargs kill -9'
 
 # GEMFILE
 ########################################
-run 'rm Gemfile'
-file 'Gemfile', <<-RUBY
-source 'https://rubygems.org'
-ruby '#{RUBY_VERSION}'
-
-#{"gem 'bootsnap', require: false" if Rails.version >= "5.2"}
-gem 'jbuilder', '~> 2.0'
-gem 'pg', '~> 0.21'
-gem 'puma'
-gem 'rails', '#{Rails.version}'
-gem 'redis'
-
-gem 'autoprefixer-rails'
-gem 'font-awesome-sass', '~> 5.6.1'
-gem 'sassc-rails'
-gem 'simple_form'
-gem 'uglifier'
-gem 'webpacker'
-
-group :development do
-  gem 'web-console', '>= 3.3.0'
-end
-
-group :development, :test do
-  gem 'pry-byebug'
-  gem 'pry-rails'
-  gem 'listen', '~> 3.0.5'
-  gem 'spring'
-  gem 'spring-watcher-listen', '~> 2.0.0'
-  gem 'dotenv-rails'
-end
-RUBY
+system 'rm Gemfile'
 
 # Ruby version
 ########################################
@@ -47,12 +16,12 @@ YAML
 
 # Assets
 ########################################
-run 'rm -rf app/assets/stylesheets'
-run 'rm -rf vendor'
-run 'curl -L https://github.com/lewagon/stylesheets/archive/master.zip > stylesheets.zip'
-run 'unzip stylesheets.zip -d app/assets && rm stylesheets.zip && mv app/assets/rails-stylesheets-master app/assets/stylesheets'
+system 'rm -rf app/assets/stylesheets'
+system 'rm -rf vendor'
+system 'curl -L https://github.com/lewagon/stylesheets/archive/master.zip > stylesheets.zip'
+system 'unzip stylesheets.zip -d app/assets && rm stylesheets.zip && mv app/assets/rails-stylesheets-master app/assets/stylesheets'
 
-run 'rm app/assets/javascripts/application.js'
+system 'rm app/assets/javascripts/application.js'
 file 'app/assets/javascripts/application.js', <<-JS
 //= require rails-ujs
 //= require_tree .
@@ -64,7 +33,7 @@ gsub_file('config/environments/development.rb', /config\.assets\.debug.*/, 'conf
 
 # Layout
 ########################################
-run 'rm app/views/layouts/application.html.erb'
+system 'rm app/views/layouts/application.html.erb'
 file 'app/views/layouts/application.html.erb', <<-HTML
 <!DOCTYPE html>
 <html>
@@ -120,7 +89,7 @@ after_bundle do
 
   # Git ignore
   ########################################
-  run 'rm .gitignore'
+  system 'rm .gitignore'
   file '.gitignore', <<-TXT
 .bundle
 log/*.log
@@ -141,8 +110,8 @@ TXT
 
   # Webpacker / Yarn
   ########################################
-  run 'rm app/javascript/packs/application.js'
-  run 'yarn add popper.js jquery bootstrap'
+  system 'rm app/javascript/packs/application.js'
+  system 'yarn add popper.js jquery bootstrap'
   file 'app/javascript/packs/application.js', <<-JS
 import "bootstrap";
 JS
@@ -168,15 +137,10 @@ JS
 
   # Dotenv
   ########################################
-  run 'touch .env'
+  system 'touch .env'
 
   # Rubocop
   ########################################
-  run 'curl -L https://raw.githubusercontent.com/lewagon/rails-templates/master/.rubocop.yml > .rubocop.yml'
+  system 'curl -L https://raw.githubusercontent.com/lewagon/rails-templates/master/.rubocop.yml > .rubocop.yml'
 
-  # Git
-  ########################################
-  git :init
-  git add: '.'
-  git commit: "-m 'Initial commit with minimal template from https://github.com/lewagon/rails-templates'"
 end
