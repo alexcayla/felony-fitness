@@ -15,7 +15,6 @@ class ActivityTypesController < ApplicationController
   def create
     @activity_type = ActivityType.new(activity_type_params)
     if @activity_type.save
-      # redirect_to cocktail_path(@cocktail)
       redirect_to @activity_type
     else
       render :new
