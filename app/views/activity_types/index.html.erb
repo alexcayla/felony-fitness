@@ -1,9 +1,12 @@
+#Need helpers for: day links, individual activity pages,
+
+
 <% @activity_types.each do |activity_type| %>
     <h2><%= link_to activity_type.name, activity_type %></h2>
     <%= activity_type.description %>
     <%= activity_type.duration %>
     <%= activity_type.price %>
     <%= activity_type.restrictions %>
-    <%= activity_type.type %>
+    <%= activity_type.kind %>
     <%= activity_type.sport %>
 <% end %>
