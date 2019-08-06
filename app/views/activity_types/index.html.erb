@@ -1,0 +1,7 @@
+<h1>all</h1>
+
+<% @activity_types.each do |activity_type| %>
+  <%= activity_type.name %>
+  <%= link_to "see all activities", activity_type_path(activity_type) %>
+  <br>
+<% end %>
