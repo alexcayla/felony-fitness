@@ -9,7 +9,7 @@ class ScheduledActivitiesController < ApplicationController
   end
 
   def new
-    @Scheduled_activity = ScheduledActivity.new
+    @scheduled_activity = ScheduledActivity.new
   end
 
   def create

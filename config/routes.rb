@@ -9,9 +9,8 @@ Rails.application.routes.draw do
 
   end
 
-  resources :activity_types do
-    resources :scheduled_activities
-  end
+  resources :activity_types
+  resources :scheduled_activities
 
   resources :bookings
 
