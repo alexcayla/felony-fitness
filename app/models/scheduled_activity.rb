@@ -4,6 +4,8 @@ class ScheduledActivity < ApplicationRecord
 
   belongs_to :user
   belongs_to :activity_type
+  has_many :bookings
+  has_many :reviews, through: :bookings, source: :reviews
   # has :name, through: :activity_type
 
   validates :location, presence: true
