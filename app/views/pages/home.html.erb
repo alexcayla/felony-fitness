@@ -1,2 +1,13 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<h1>Home</h1>
+
+<div class="container">
+  This page will contain a listing of all scheduled activities. For now, this is an unfiltered list
+
+  <% @scheduled_activities.each do |activity| %>
+  <div class="card">
+    <%= link_to activity.activity_type.name, activity_type_path(activity.activity_type.id) %>
+    <%= activity.date.strftime("%H:%M") %>
+    <%= link_to "book this class", new_booking_path(:class_id => activity.id) %>
+  </div>
+  <% end %>
+</div>

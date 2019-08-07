@@ -1,12 +1,23 @@
-#Need helpers for: day links, individual activity pages,
+#Need helpers for: day links, individual activity pages, etc.
 
+<%= link_to "back home", root_path %>
 
 <% @activity_types.each do |activity_type| %>
     <h2><%= link_to activity_type.name, activity_type %></h2>
-    <%= activity_type.description %>
-    <%= activity_type.duration %>
-    <%= activity_type.price %>
-    <%= activity_type.restrictions %>
-    <%= activity_type.kind %>
-    <%= activity_type.sport %>
+    <ul>
+      <li><%= activity_type.description %></li>
+      <li>Duration: <%= activity_type.duration %></li>
+      <li>Price:<%= activity_type.price %></li>
+      <li>Restrictions: <%= activity_type.restrictions %></li>
+      <li>Type: <%= activity_type.kind %></li>
+      <li>Sport: <%= activity_type.sport %></li>
+      <li>Number of classes: <%= activity_type.scheduled_activities.length %></li>
+    </ul>
+    <%= link_to "Add a new class", new_scheduled_activity_path %>
+    <br>
+<br>
 <% end %>
+
+
+How do I get the number of people in the controller?
+Actually, if

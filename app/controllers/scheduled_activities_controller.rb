@@ -18,7 +18,7 @@ class ScheduledActivitiesController < ApplicationController
     @scheduled_activity.user = User.find(1)
     @activity_type = ActivityType.find(params[:scheduled_activity][:activity_type_id])
     if @scheduled_activity.save!
-      redirect_to scheduled_activities_path
+      redirect_to activity_type_path(@activity_type)
     else
       render "new"
     end
