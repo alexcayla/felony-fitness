@@ -1,7 +1,9 @@
-<h1>My bookings?</h1>
+<div class="container">
+  <h1>My bookings?</h1>
 
-<% @my_bookings.each do |booking| %>
-<%= booking.scheduled_activity.activity_type.name %>
-<%#= link_to "Add a review", new_review_path(booking_id: booking) %>
+  <% @my_bookings.each do |booking| %>
+  <%= booking.scheduled_activity.activity_type.name %>
+  <%#= link_to "Add a review", new_review_path(booking_id: booking) %>
 
-<% end %>
+  <% end %>
+</div>
