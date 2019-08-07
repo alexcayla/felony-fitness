@@ -1,10 +1,15 @@
 <h1>Show page</h1>
-
-<%= @scheduled_activity.activity_type.name %>
-<%= @scheduled_activity.date %>
-<%= @scheduled_activity.location %>
-<%= @scheduled_activity.capacity %>
-<%= @scheduled_activity.instructor_id %>
+<ul>
+  <li><%= @scheduled_activity.activity_type.name %></li>
+  <li><%= @scheduled_activity.date %></li>
+  <li><%= @scheduled_activity.location %></li>
+  <li><%= @scheduled_activity.capacity %></li>
+  <li>Instructor_id: <%= @scheduled_activity.instructor.rapsheet %></li>
+  <% raise %>
+  <li>
+    <%= @scheduled_activity %>
+  </li>
+</ul>
 <%= link_to "edit", edit_scheduled_activity_path %>
 <br>
 <%= link_to "home", scheduled_activities_path %>

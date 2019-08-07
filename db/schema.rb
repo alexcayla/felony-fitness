@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_06_101512) do
+ActiveRecord::Schema.define(version: 2019_08_07_070304) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,17 @@ ActiveRecord::Schema.define(version: 2019_08_06_101512) do
     t.datetime "updated_at", null: false
     t.index ["scheduled_activity_id"], name: "index_bookings_on_scheduled_activity_id"
     t.index ["user_id"], name: "index_bookings_on_user_id"
+  end
+
+  create_table "instructors", force: :cascade do |t|
+    t.string "instructor_photo"
+    t.text "bio"
+    t.text "qualification"
+    t.text "rapsheet"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_instructors_on_user_id"
   end
 
   create_table "reviews", force: :cascade do |t|
@@ -72,16 +83,13 @@ ActiveRecord::Schema.define(version: 2019_08_06_101512) do
     t.string "first_name"
     t.string "last_name"
     t.string "photo"
-    t.boolean "instructor"
-    t.text "bio"
-    t.text "qualification"
-    t.text "rapsheet"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "bookings", "scheduled_activities"
   add_foreign_key "bookings", "users"
+  add_foreign_key "instructors", "users"
   add_foreign_key "reviews", "bookings"
   add_foreign_key "reviews", "users"
   add_foreign_key "scheduled_activities", "activity_types"
