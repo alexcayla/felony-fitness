@@ -1,6 +1,9 @@
-<%= simple_form_for @scheduled_activity do |f| %>
+
+
+<%= simple_form_for [@scheduled_activity] do |f| %>
+<%= f.association :activity_type, collection: @activity_types %>
 <%= f.input :date %>
 <%= f.input :location %>
 <%= f.input :capacity %>
-<%= f.button :submit %>
+<%= f.button :submit, class:"btn btn-primary"%>
 <% end %>
