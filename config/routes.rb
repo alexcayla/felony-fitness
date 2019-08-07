@@ -12,11 +12,14 @@ Rails.application.routes.draw do
   end
 
   resources :activity_types
-  resources :scheduled_activities
 
-  resources :bookings
+  resources :scheduled_activities do
+    resources :bookings,  only: [:index, :new, :edit, :create, :show, :delete]
+  end
 
-  resources :reviews
+  resources :bookings do
+    resources :reviews, only: [:index, :new, :update, :edit, :create, :show]
+  end
 
 
 end
