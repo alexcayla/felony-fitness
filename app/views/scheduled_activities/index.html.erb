@@ -1,8 +1,14 @@
 <h1>all</h1>
 
 <% @scheduled_activities.each do |activity| %>
+<div class="container">
   <%= activity.activity_type.name %>
-  <br>
+  <%= activity.location %>
+  <%= activity.capacity %>
   <%= activity.date %>
+  <%= link_to "edit", edit_scheduled_activity_path(activity.id) %>
+  <%= link_to "delete", activity, method: :delete, data: { confirm: 'Are you sure?'} %>
+</div>
 <% end %>
+<%= link_to "create new scheduled activity", new_scheduled_activity_path %>
 
