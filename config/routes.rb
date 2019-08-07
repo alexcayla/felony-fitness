@@ -7,15 +7,10 @@ Rails.application.routes.draw do
 
   # Let's write the routes
 
-  resources :users do
-
-  end
-
+  resources :users
   resources :activity_types
   resources :scheduled_activities
-
   resources :bookings
-
   resources :reviews
 
 
