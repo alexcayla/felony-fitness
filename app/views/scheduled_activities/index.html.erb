@@ -2,13 +2,17 @@
 
 <% @scheduled_activities.each do |activity| %>
 <div class="container">
-  <%= activity.activity_type.name %>
-  <%= activity.location %>
-  <%= activity.capacity %>
-  <%= activity.date %>
-  <%= link_to "edit", edit_scheduled_activity_path(activity.id) %>
-  <%= link_to "delete", activity, method: :delete, data: { confirm: 'Are you sure?'} %>
-  <%= link_to "show", scheduled_activity_path(activity.id) %>
+  <div class="d-flex">
+    <%= activity.activity_type.name %>
+    <%= activity.location %>
+    <%= activity.capacity %>
+    <%= activity.date %>
+    <div>
+      <%= link_to "edit", edit_scheduled_activity_path(activity.id) %>
+      <%= link_to "delete", activity, method: :delete, data: { confirm: 'Are you sure?'} %>
+      <%= link_to "show", scheduled_activity_path(activity.id) %>
+    </div>
+  </div>
 </div>
 <% end %>
 
