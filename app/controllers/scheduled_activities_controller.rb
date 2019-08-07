@@ -4,7 +4,7 @@ class ScheduledActivitiesController < ApplicationController
   end
 
   def show
-    @activity_type = ActivityType.find(params[:id])
+    # @activity_type = ActivityType.find(params[:id])
     @scheduled_activity = ScheduledActivity.find(params[:id])
     @scheduled_activities = ScheduledActivity.where(activity_type_id: params[:activity_type])
   end
@@ -16,7 +16,7 @@ class ScheduledActivitiesController < ApplicationController
 
   def create
     @scheduled_activity = ScheduledActivity.new(activity_params)
-    @scheduled_activity.user = User.find(1)
+    # @scheduled_activity.user = User.find(1)
     @activity_type = ActivityType.find(params[:scheduled_activity][:activity_type_id])
     if @scheduled_activity.save
       redirect_to scheduled_activities_path
