@@ -41,6 +41,6 @@ class ActivityTypesController < ApplicationController
   private
 
   def activity_type_params
-    params.require(:activity_type).permit(:name, :description, :duration, :price, :restrictions, :sport)
+    params.require(:activity_type).permit(:name, :description, :duration, :price, :restrictions, :sport, :kind)
   end
 end
