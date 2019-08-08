@@ -9,9 +9,7 @@ Rails.application.routes.draw do
 
   resources :users
   resources :instructors
-
   resources :activity_types
-
   resources :scheduled_activities do
     resources :bookings#,  only: [:index, :new, :edit, :create]
   end
@@ -23,7 +21,6 @@ Rails.application.routes.draw do
   resources :reviews, only: [:show ]
 
   get  '/dashboard', to: 'pages#dashboard', as: 'dashboard'
-
   get '/activities_home', to: 'pages#activities_home', as: 'scheduled_activities_page'
 
 end

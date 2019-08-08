@@ -1,0 +1,31 @@
+<div class="container">
+  <h1><%= @instructor.name %></h1>
+
+
+  <%= cl_image_tag("Tdtaveuwoymin5nhqztwr", width: 400, height: 300, crop: :fill) %>
+
+  <div class="col-5">
+    <ul class="list-group-flush">
+      <li class="list-group-item"><%= @instructor.bio %></li>
+      <li class="list-group-item"><strong>Qualifications: </strong><%= @instructor.qualification %></li>
+      <li class="list-group-item"><strong>Rapsheet: </strong><%= @instructor.rapsheet %></li>
+    </ul>
+   </div>
+
+  <h2>Classes</h2>
+  <% @unique_activity_types.each do |type| %>
+    <div class="card p-4 my-3">
+      <%= link_to "#{type.name} - #{type.duration} minutes", activity_type_path %>
+      <%= type.description %>
+    </div>
+  <% end %>
+
+
+  <h2>Upcoming classes</h2>
+  <% @scheduled_activities.each do |activity| %>
+    <div class="card p-4 my-3">
+      <%= activity.name %>
+      <%= activity.date %>
+    </div>
+  <% end %>
+</div>
