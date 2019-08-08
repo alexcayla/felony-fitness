@@ -1,3 +1,4 @@
+<div class="container">
 <h1>all</h1>
 
 <% @scheduled_activities.each do |activity| %>
@@ -11,5 +12,15 @@
   <%= link_to "show", scheduled_activity_path(activity.id) %>
 </div>
 <% end %>
+
+<div
+  id="map"
+  style="width: 100%;
+  height: 600px;"
+  data-markers="<%= @markers.to_json %>"
+  data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
+class="container"></div>
+
 <%= link_to "create new scheduled activity", new_scheduled_activity_path %>
 
+</div>

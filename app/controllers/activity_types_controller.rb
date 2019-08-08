@@ -27,8 +27,11 @@ class ActivityTypesController < ApplicationController
 
   def update
     @activity_type = ActivityType.find(params[:id])
-    @activity_type.update(activity_type_params)
-    redirect_to activity_type_path(@activity_type)
+    if @activity_type.update(activity_type_params)
+      redirect_to @activity_type
+    else
+      render 'edit'
+    end
   end
 
   def delete

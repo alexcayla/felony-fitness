@@ -1,12 +1,28 @@
 class ScheduledActivitiesController < ApplicationController
   def index
-    @scheduled_activities = ScheduledActivity.all
+    @scheduled_activities = ScheduledActivity.geocoded
+    @markers = @scheduled_activities.map do |activity|
+      {
+        lat: activity.latitude,
+        lng: activity.longitude,
+        infoWindow: render_to_string(partial: "info_window", locals: { activity: activity })
+
+      }
+    end
   end
 
   def show
+<<<<<<< HEAD
     # @activity_type = ActivityType.find(params[:id])
+=======
+>>>>>>> 0eaa593c9ce790297b70ba14d02ab0d63f64ae05
     @scheduled_activity = ScheduledActivity.find(params[:id])
     @scheduled_activities = ScheduledActivity.where(activity_type_id: params[:activity_type])
+    @markers = {
+        lat: @scheduled_activity.latitude,
+        lng: @scheduled_activity.longitude,
+        infoWindow: render_to_string(partial: "info_window_2", locals: { scheduled_activity: @scheduled_activity })
+      }
   end
 
   def new

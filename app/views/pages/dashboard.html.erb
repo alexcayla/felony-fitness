@@ -1,0 +1,31 @@
+<div class="container">
+<h1>Hi <%= current_user.first_name %>!</h1>
+Email: <%= current_user.email %> <br>
+User id: <%= current_user.id %> <br><br>
+<br>
+
+
+<h2>Upcoming classes</h2>
+  <% if @upcoming_bookings.any? %>
+      <% @upcoming_bookings.each do |booking| %>
+      <div class="card m-2 p-2 bg-light">
+        <%= booking.scheduled_activity.name %>
+        <p><%= booking.date %></p>
+        <%= link_to "Cancel this booking", booking_path(booking), method: :delete, data: { confirm: "Are you sure?" } %>
+      </div>
+      <% end %>
+    <% else %>
+      <%= "You have no upcoming bookings" %>
+  <% end %>
+
+<h2>Past classes</h2>
+<%= @past_bookings.first.date if @past_bookings.any? %>
+
+<% @past_bookings.each do |booking| %>
+<div class="card m-2 p-2 bg-light">
+  <%= booking.scheduled_activity.name %>
+  <p><%= booking.date %></p>
+  <p><%= link_to "Review this booking", new_booking_review_path(booking) %></p>
+</div>
+<% end %>
+</div>

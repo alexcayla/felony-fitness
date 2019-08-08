@@ -1,3 +1,4 @@
+<div class="container">
 <h1>Show page</h1>
 
 <%= @scheduled_activity.activity_type.name %>
@@ -7,5 +8,14 @@
 <%= @scheduled_activity.instructor_id %>
 <%= link_to "edit", edit_scheduled_activity_path %>
 <br>
+<div
+  id="map"
+  style="width: 100%;
+  height: 600px;"
+  data-markers="<%= @markers.to_json %>"
+  data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
+class="container"></div>
+
 <%= link_to "home", scheduled_activities_path %>
 
+</div>

@@ -1,13 +1,3 @@
 <div class="container">
-<h1>Me!</h1>
-<%= current_user.email %> <br><br>
-
-<% @my_bookings.each do |booking| %>
-<div class="card">
-  <% activity = ScheduledActivity.find(booking.scheduled_activity_id) %>
-  <%= activity.activity_type.name %>
-  <%= activity.date %>
-  <%= link_to "Cancel this booking", booking_path(booking), method: :delete, data: { confirm: "Are you sure?" } %>
-</div>
-<% end %>
+  <h1>User profile... to edit?</h1>
 </div>
