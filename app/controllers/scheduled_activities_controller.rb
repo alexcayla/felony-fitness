@@ -11,7 +11,7 @@ class ScheduledActivitiesController < ApplicationController
   end
 
   def show
-    @activity_type = ActivityType.find(params[:id])
+    # @activity_type = ActivityType.find(params[:id])
 
     @scheduled_activity = ScheduledActivity.find(params[:id])
     @scheduled_activities = ScheduledActivity.where(activity_type_id: params[:activity_type])
