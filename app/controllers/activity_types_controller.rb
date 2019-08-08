@@ -1,5 +1,8 @@
 class ActivityTypesController < ApplicationController
+  skip_before_action :authenticate_user!, only: [:index, :show]
+
   def index
+
     @activity_types = ActivityType.all
     # @markers = @activity_types.map do |activity|
     #   {
@@ -70,6 +73,6 @@ class ActivityTypesController < ApplicationController
   private
 
   def activity_type_params
-    params.require(:activity_type).permit(:name, :description, :duration, :price, :restrictions, :sport, :kind)
+    params.require(:activity_type).permit(:name, :description, :duration, :price, :restrictions, :sport, :kind, :photo)
   end
 end
