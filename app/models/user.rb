@@ -10,9 +10,9 @@ class User < ApplicationRecord
 
   def instructor_profile
     Instructor.find(user_id: self.id)
+  end
 
   def name
     "#{self.first_name} #{self.last_name}"
-
   end
 end
