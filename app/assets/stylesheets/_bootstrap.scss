@@ -11137,8 +11137,8 @@ html {
 }
 
 .clean-product-item .image img {
-  max-width: 220px;
-  max-height: 180px
+  max-width: 100% !important;
+  max-height: 180px;
 }
 
 .clean-product-item .product-name {

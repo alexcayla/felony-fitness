@@ -8,6 +8,24 @@ require 'faker'
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+
+# puts 'Creating 100 fake felons...'
+#   instructor = Instructor.new(
+#     # name:    Faker::Company.name,
+#     # address: "#{Faker::Address.street_address}, #{Faker::Address.city}",
+#     # rating:  rand(0..5)
+
+#     instructor_photo: string
+#     bio: text
+#     qualification: text
+#     rapsheet: text
+#   )
+#   restaurant.save!
+# end
+# puts 'Finished!'
+# felons = Instructor.create()
+
+
 # Shared values
 email_providers = ['gmail.com', 'yahoo.com', 'darknet.org', 'drugs4you.net', 'hotmail.com', 'icloud.com']
 users = []
