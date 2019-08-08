@@ -6,7 +6,6 @@ class ScheduledActivitiesController < ApplicationController
         lat: activity.latitude,
         lng: activity.longitude,
         infoWindow: render_to_string(partial: "info_window", locals: { activity: activity })
-
       }
     end
   end
@@ -31,6 +30,7 @@ class ScheduledActivitiesController < ApplicationController
   def create
     @scheduled_activity = ScheduledActivity.new(activity_params)
     @activity_type = ActivityType.find(params[:scheduled_activity][:activity_type_id])
+    @scheduled_activity.user = current_user
     if @scheduled_activity.save
       redirect_to scheduled_activities_path
     else
