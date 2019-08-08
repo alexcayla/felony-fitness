@@ -1,3 +1,129 @@
-<div class="container">
-  <h1>Felons near you</h1>
-</div>
+<!--<div class="container mt-4">-->
+<!--<#%= link_to "back home", root_path %>-->
+
+<!--<#% @instructors.each do |instructor| %>-->
+<!--  <h2><#%= link_to instructor.name, instructor %></h2>-->
+<!--    <ul></ul>-->
+<!--      <li>Photo: <#%= instructor.instructor_photo %></li>-->
+<!--      <li>Bio: <#%= instructor.bio %></li>-->
+<!--      <li>Qualification:<#%= instructor.qualification %></li>-->
+<!--      <li>Rapsheet: <#%= instructor.rapsheet %></li>-->
+<!--<li>Number of classes: <#%= instructor.scheduled_activities.length %></li>-->
+<!--    </ul>-->
+<!--<#%= link_to "Add a new class", new_scheduled_activity_path %>-->
+<!--    <br>-->
+<!--<br>-->
+<!--<#% end %>-->
+<!--</div>-->
+
+<main class="page catalog-page">
+  <section class="clean-block clean-catalog dark">
+    <div class="container">
+      <div class="block-heading">
+        <h2 class="text-info">Your friendly neighbourhood Felons</h2>
+        <p>Browse your favourite felon instructors and book your session - absolutely free of charge!</p>
+      </div>
+      <div class="content">
+        <div class="row">
+          <div class="col-md-3">
+            <div class="d-none d-md-block">
+              <div class="filters">
+                <div class="filter-item">
+                  <h3>Conviction</h3>
+                  <div class="form-check"><input type="checkbox" class="form-check-input" id="formCheck-1" /><label class="form-check-label" for="formCheck-1">Theft</label></div>
+                  <div class="form-check"><input type="checkbox" class="form-check-input" id="formCheck-2" /><label class="form-check-label" for="formCheck-2">Robbery</label></div>
+                  <div class="form-check"><input type="checkbox" class="form-check-input" id="formCheck-3" /><label class="form-check-label" for="formCheck-3">Assault</label></div>
+                  <div class="form-check"><input type="checkbox" class="form-check-input" id="formCheck-4" /><label class="form-check-label" for="formCheck-4">Murder</label></div>
+                </div>
+                <div class="filter-item">
+                  <h3>Distance</h3>
+                  <div class="form-check"><input type="radio" class="form-check-input" id="formCheck-5" /><label class="form-check-label" for="formCheck-5">&lt; 5 Km</label></div>
+                  <div class="form-check"><input type="radio" class="form-check-input" id="formCheck-6" /><label class="form-check-label" for="formCheck-5">&lt; 10 Km</label></div>
+                  <div class="form-check"><input type="radio" class="form-check-input" id="formCheck-7" /><label class="form-check-label" for="formCheck-5">&lt; 15 Km</label></div>
+                </div>
+              </div>
+            </div>
+            <div class="d-md-none"><a class="btn btn-link d-md-none filter-collapse" data-toggle="collapse" aria-expanded="false" aria-controls="filters" href="#filters" role="button">Filters<i class="icon-arrow-down filter-caret"></i></a>
+              <div class="collapse" id="filters">
+                <div class="filters">
+                  <div class="filter-item">
+                    <h3>instructor Type</h3>
+                    <div class="form-check"><input type="checkbox" class="form-check-input" id="formCheck-1" /><label class="form-check-label" for="formCheck-1">Theft</label></div>
+                    <div class="form-check"><input type="checkbox" class="form-check-input" id="formCheck-2" /><label class="form-check-label" for="formCheck-2">Robbery</label></div>
+                    <div class="form-check"><input type="checkbox" class="form-check-input" id="formCheck-3" /><label class="form-check-label" for="formCheck-3">Assault</label></div>
+                    <div class="form-check"><input type="checkbox" class="form-check-input" id="formCheck-4" /><label class="form-check-label" for="formCheck-4">Murder</label></div>
+                  </div>
+                  <div class="filter-item">
+                    <h3>Distance</h3>
+                    <div class="form-check"><input type="radio" class="form-check-input" id="formCheck-5" /><label class="form-check-label" for="formCheck-5">&lt; 5 Km</label></div>
+                    <div class="form-check"><input type="radio" class="form-check-input" id="formCheck-6" /><label class="form-check-label" for="formCheck-5">&lt; 10 Km</label></div>
+                    <div class="form-check"><input type="radio" class="form-check-input" id="formCheck-7" /><label class="form-check-label" for="formCheck-5">&lt; 15 Km</label></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-9">
+            <div class="products">
+              <div>
+                <div class="tab-content">
+                  <div role="tabpanel" class="tab-pane active" id="tab-1">
+                    <!-- <p>Content for today.</p> -->
+                    <div class="row no-gutters mt-4">
+
+                      <div class="col-12 col-md-6 col-lg-4">
+                        <% @instructors.each do |instructor| %>
+                          <div class="bean lean-product-item">
+                            <%= instructor.name %>
+                              <div class="image">
+                                <%= link_to '#' do %>
+                                  <%= image_tag("convicts/criminal.jpg", class: 'img-fluid d-block mx-auto') %>
+                                    <% end%>
+                              </div>
+
+                              <div class="product-name">
+                                <!--<#%= link_to scheduled_activity.name, activity_type_path(scheduled_activity.activity_type) %>-->
+                              </div>
+
+                              <div class="about">
+                                <div class="rating"><img src="star.svg" /><img src="star.svg" /><img src="star.svg" /><img src="star-half-empty.svg" /><img src="star-empty.svg" /></div>
+                                <div class="price"></div>
+                              </div>
+                          </div>
+                          <% end %>
+                      </div>
+                    </div>
+                  </div>
+                  <div role="tabpanel" class="tab-pane" id="tab-2">
+                    <p>Content for Wednesday.</p>
+                    <div class="row no-gutters">
+                      <div class="col-12 col-md-6 col-lg-4">
+                        <div class="clean-product-item">
+                          <div class="image"><a href="instructor-profile.html"><img class="img-fluid d-block mx-auto" src="instructors/crossfit1.jpg" /></a></div>
+                          <div class="product-name"><a href="instructor-profile.html">Baby Face WOD</a></div>
+                          <div class="about">
+                            <div class="rating"><img src="star.svg" /><img src="star.svg" /><img src="star.svg" /><img src="star-half-empty.svg" /><img src="star-empty.svg" /></div>
+                            <div class="price"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <nav>
+                <ul class="pagination">
+                  <li class="page-item disabled"><a class="page-link" href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
+                  <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                  <li class="page-item"><a class="page-link" href="#">2</a></li>
+                  <li class="page-item"><a class="page-link" href="#">3</a></li>
+                  <li class="page-item"><a class="page-link" href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>

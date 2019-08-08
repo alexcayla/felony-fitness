@@ -5,3 +5,20 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+# require 'faker'
+
+# puts 'Creating 100 fake felons...'
+#   instructor = Instructor.new(
+#     # name:    Faker::Company.name,
+#     # address: "#{Faker::Address.street_address}, #{Faker::Address.city}",
+#     # rating:  rand(0..5)
+
+#     instructor_photo: string
+#     bio: text
+#     qualification: text
+#     rapsheet: text
+#   )
+#   restaurant.save!
+# end
+# puts 'Finished!'
+# felons = Instructor.create()
