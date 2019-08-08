@@ -47,8 +47,12 @@
           </li>
         </ul>
         <span class="navbar-text actions">
-          <%= link_to "Login", new_user_session_path, class: "login" %>
-          <%= link_to "Sign Up", destroy_user_session_path, class: "btn btn-light action-button" %>
+          <% if user_signed_in? %>
+            <%= link_to "Profile", dashboard_path, class: "login" %>
+          <% else %>
+            <%= link_to "Login", new_user_session_path, class: "login" %>
+          <% end %>
+          <%= link_to "Sign out", destroy_user_session_path, class: "btn btn-light action-button" %>
           <!-- role="button" -->
         </span>
       </div>
