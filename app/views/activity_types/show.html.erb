@@ -99,6 +99,8 @@
   <%= scheduled_activity.date %>
   <%= scheduled_activity.location %>
   <%= link_to "book this class", new_scheduled_activity_booking_path(scheduled_activity) %>
+  <%= link_to "delete", scheduled_activity, method: :delete, data: { confirm: 'Are you sure?'} %>
+  <li>
 </div>
 <% end %>
 </div>
