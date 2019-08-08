@@ -4,6 +4,14 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  has_one :instructor
+  has_many :bookings
+  has_many :reviews
+
+  def instructor_profile
+    Instructor.find(user_id: self.id)
+  end
+
   def name
     "#{self.first_name} #{self.last_name}"
   end
