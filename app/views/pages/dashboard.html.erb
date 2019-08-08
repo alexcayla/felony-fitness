@@ -2,8 +2,14 @@
 <h1>Hi <%= current_user.first_name %>!</h1>
 Email: <%= current_user.email %> <br>
 User id: <%= current_user.id %> <br><br>
-<br>
+<p class="alert-success p-2"><%= "You are an instructor" if current_user.instructor %></p>
 
+<br>
+<% unless current_user.instructor %>
+<p class="alert-success p-2">Fit felon?
+  <%= link_to "Become an instructor!", new_instructor_path %>
+</p>
+<% end %>
 
 <h2>Upcoming classes</h2>
   <% if @upcoming_bookings.any? %>

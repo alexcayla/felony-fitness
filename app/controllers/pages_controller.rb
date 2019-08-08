@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  before_action :user_bookings
+  before_action :user_bookings, except: :home
   skip_before_action :authenticate_user!, only: :home
 
   def home
@@ -9,8 +9,8 @@ class PagesController < ApplicationController
 
   def dashboard
     # I think I would need to sort it by date. Doing so, if the first date is nil. That means that
-    sorted_bookings = @user_bookings.sort_by &:date
 
+    sorted_bookings = @user_bookings.sort_by &:date
     @upcoming_bookings = sorted_bookings.select do |booking|
        booking.date > Date.today
     end
