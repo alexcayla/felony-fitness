@@ -19,6 +19,8 @@ gem 'webpacker'
 gem 'geocoder'
 gem 'dotenv-rails', groups: [:development, :test]
 
+gem 'faker'
+
 group :development do
   gem 'web-console', '>= 3.3.0'
 end
