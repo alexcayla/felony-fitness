@@ -1,8 +1,15 @@
 <div class="container">
 <h1>Hi <%= current_user.first_name %>!</h1>
+<%= link_to "Edit", edit_user_path(current_user), class: 'btn btn-primary' %>
 Email: <%= current_user.email %> <br>
 User id: <%= current_user.id %> <br><br>
-<p class="alert-success p-2"><%= "You are an instructor" if current_user.instructor %></p>
+<p class="alert-success p-2">
+  <% if current_user.instructor %>
+    <%= link_to "Review your instructor profile", instructor_path(@user.instructor.id)%>
+  <% end %>
+</p>
+
+<%= cl_image_tag @user.photo, height: 300, width: 400, crop: :fill %>
 
 <br>
 <% unless current_user.instructor %>
@@ -25,12 +32,11 @@ User id: <%= current_user.id %> <br><br>
   <% end %>
 
 <h2>Past classes</h2>
-<%= @past_bookings.first.date if @past_bookings.any? %>
 
 <% @past_bookings.each do |booking| %>
 <div class="card m-2 p-2 bg-light">
   <%= booking.scheduled_activity.name %>
-  <p><%= booking.date %></p>
+  <p><%= booking.date.strftime("%m/%d/%y - %I:%M %p") %></p>
   <p><%= link_to "Review this booking", new_booking_review_path(booking) %></p>
 </div>
 <% end %>

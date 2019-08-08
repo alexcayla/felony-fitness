@@ -2,7 +2,7 @@
   <h1><%= @instructor.name %></h1>
 
 
-  <%= cl_image_tag("Tdtaveuwoymin5nhqztwr", width: 400, height: 300, crop: :fill) %>
+  <%= cl_image_tag @instructor.instructor_photo, height: 300, width: 400, crop: :fill %>
 
   <div class="col-5">
     <ul class="list-group-flush">

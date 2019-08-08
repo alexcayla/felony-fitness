@@ -7,14 +7,7 @@
     <div class="col card p-4 m-4 bg-light">
       <h2>Join the gang</h2>
       <p>You paid you debts to society? That doesn't mean you should be able to make money anymore. </p>
-      <%= simple_form_for @instructor do |f|%>
-
-        <%= f.input :instructor_photo, hint: 'A nice mugshot?' %>
-        <%= f.input :bio %>
-        <%= f.input :qualification %>
-        <%= f.input :rapsheet %>
-        <%= f.button :submit, 'Submit', class: 'btn btn-primary'%>
-      <% end %>
+      <%= render 'instructor_form' %>
     </div>
   </div>
 </div>

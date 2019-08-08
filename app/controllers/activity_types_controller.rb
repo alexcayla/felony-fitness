@@ -14,7 +14,7 @@ class ActivityTypesController < ApplicationController
     @activity_type = ActivityType.find(params[:id])
     @scheduled_activities = ScheduledActivity.where(activity_type_id: params[:id])
     @markers =  [{lat: -8.6908357, lng: 115.2312006}]
-
+    @upcoming_activity = @scheduled_activities.order(date: :desc).first
 
     if  @activity_type.scheduled_activities.any?
     @markers = @activity_type.scheduled_activities.map do |activity|

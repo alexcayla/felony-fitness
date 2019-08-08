@@ -18,8 +18,8 @@
 
           <div class="activity_type">
             <p>Next available class:</p>
-            <p>Placeholder for scheduled time</p>
-            <div class="btn btn-primary one">Book now!</div>
+            <%= @upcoming_activity.date.strftime("%m/%d/%y - %I:%M %p") %>
+            <%= link_to "Book now", new_scheduled_activity_booking_path(@upcoming_activity), class: "btn btn-primary one" %>
           </div>
           <div class="border mb-3"></div>
           <h2>Schedule</h2>

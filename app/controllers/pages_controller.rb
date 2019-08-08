@@ -9,7 +9,7 @@ class PagesController < ApplicationController
 
   def dashboard
     # I think I would need to sort it by date. Doing so, if the first date is nil. That means that
-
+    @user = current_user
     sorted_bookings = @user_bookings.sort_by &:date
     @upcoming_bookings = sorted_bookings.select do |booking|
        booking.date > Date.today
