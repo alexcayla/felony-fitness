@@ -1,29 +1,105 @@
-<%= link_to "Back to all activities", activity_types_path %>
+<%#= link_to "Back to all activities", activity_types_path %>
 <div class="container">
-<div class="main">
-  <h1><%= @activity_type.name %></h1>
-  <div class="edit">
-    <%#= link_to 'Edit this activity_type', edit_path %>
+  <div class="box">
+    <div class="mb-5">
+      <div class="row">
+        <div class="col-6">
+          <div class="gallery"></div>
+        </div>
+        <div class="col-6">
+          <div class="main">
+            <%= link_to @activity_type.name, '#', class: 'acturl' %>
+            <p>Star rating goes here later</p>
+            <div class="border mb-3"></div>
+            <div class="edit">
+              <%#= link_to 'Edit this activity_type', edit_path %>
+            </div>
+          </div>
+
+          <div class="activity_type">
+            <p>Next available class:</p>
+            <p>Placeholder for scheduled time</p>
+            <div class="btn btn-primary one">Book now!</div>
+          </div>
+          <div class="border mb-3"></div>
+          <h2>Schedule</h2>
+
+          <% if @scheduled_activities.length == 0 %>
+          <%= link_to "Schedule a new class", new_scheduled_activity_path(ActivityType), class: 'btn btn-primary' %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="product-info">
+      <ul class="nav nav-tabs">
+        <li class="nav-item">
+          <a class="nav-link active desc-link" href="#">Description</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link sched-link" href="#">Schedule</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link loc-link" href="#">Location</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link rev-link" href="#" tabindex="-1">Reviews</a>
+        </li>
+      </ul>
+      <div class="description">
+        Description
+        <%= @activity_type.description %>
+        <img src="" alt="Placeholder">
+      </div>
+      <div class="schedule">
+        Schedule
+        <div class="table">
+          <th><strong>Date</strong></th> <th><strong>Time</strong></th>
+
+        </div>
+      </div>
+      <div class="location">
+        Location
+        <div
+          id="map"
+          style="width: 100%;
+          height: 600px;"
+          data-markers="<%= @markers.to_json %>"
+          data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
+          class="container map-show"></div>
+        </div>
+      </div>
+      <div class="reviews">
+        <% @scheduled_activities.each do |a| %>
+        <% a.bookings.each do |b| %>
+        <% b.reviews.each do |r| %>
+        <div class="review">
+          <div class="review-item">
+            <div class="rating">
+              <img src="star.svg" style="">
+              <img src="star.svg" style="">
+              <img src="star.svg" style="">
+              <img src="star.svg" style="">
+              <img src="star-empty.svg" style="">
+            </div>
+            <!-- <h4>Could be more aggressive</h4> -->
+            <span class="text-muted"><%= link_to r.user.first_name, user_path(r.user) %>, <%= r.created_at.to_s.gsub(/\d\:\S+\s\w+/, '') %></span>
+            <p><%= r.description %></p>
+          </div>
+          <% end %>
+          <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
-
-<div class="activity_type">
-  <p><%= @activity_type.description %></p>
-</div>
-
-<h2>Schedule</h2>
-
-<% if  @scheduled_activities.length == 0 %>
-  <%= link_to "Schedule a new class", new_scheduled_activity_path(ActivityType), class: 'btn btn-primary' %>
-<% end %>
-
 
 <% @scheduled_activities.each do |scheduled_activity| %>
-  <div class="card p-4">
-    <%= scheduled_activity.date %>
-    <%= scheduled_activity.location %>
-    <%= link_to "book this class", new_scheduled_activity_booking_path(scheduled_activity) %>
-  </div>
+<div class="card p-4">
+  <%= scheduled_activity.date %>
+  <%= scheduled_activity.location %>
+  <%= link_to "book this class", new_scheduled_activity_booking_path(scheduled_activity) %>
+</div>
 <% end %>
 </div>
 
