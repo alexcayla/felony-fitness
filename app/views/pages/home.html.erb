@@ -76,21 +76,28 @@
                                     </ul>
                                     <div class="tab-content">
                                         <div role="tabpanel" class="tab-pane active" id="tab-1">
-                                            <p>Content for today.</p>
-                                            <div class="row no-gutters">
+                                            <!-- <p>Content for today.</p> -->
+                                            <div class="row no-gutters mt-4">
                                                 <div class="col-12 col-md-6 col-lg-4">
+
+                                                  <% @scheduled_activities.each do |scheduled_activity| %>
                                                     <div class="clean-product-item">
+                                                      <%= scheduled_activity.name %>
                                                         <div class="image">
                                                           <%= link_to '#' do %>
                                                             <%= image_tag("activities/jailbreak1.jpg", class: 'img-fluid d-block mx-auto') %>
                                                           <% end%>
+
                                                         </div>
-                                                        <div class="product-name"><a href="#">Thierry&#39;s Tunneling Class</a></div>
+                                                        <div class="product-name">
+                                                          <%= link_to scheduled_activity.name, activity_type_path(scheduled_activity.activity_type) %>
+                                                        </div>
                                                         <div class="about">
                                                             <div class="rating"><img src="star.svg" /><img src="star.svg" /><img src="star.svg" /><img src="star-half-empty.svg" /><img src="star-empty.svg" /></div>
                                                             <div class="price"></div>
                                                         </div>
                                                     </div>
+                                                    <% end %>
                                                 </div>
 
 
