@@ -59,42 +59,48 @@
       </div>
       <div class="location">
         Location
-        <div>Map placeholder
+        <div
+          id="map"
+          style="width: 100%;
+          height: 600px;"
+          data-markers="<%= @markers.to_json %>"
+          data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
+          class="container map-show"></div>
         </div>
       </div>
-        <div class="reviews">
-          <% @scheduled_activities.each do |a| %>
-            <% a.bookings.each do |b| %>
-              <% b.reviews.each do |r| %>
-                <div class="review">
-                  <div class="review-item">
-                    <div class="rating">
-                      <img src="star.svg" style="">
-                      <img src="star.svg" style="">
-                      <img src="star.svg" style="">
-                      <img src="star.svg" style="">
-                      <img src="star-empty.svg" style="">
-                    </div>
-                    <!-- <h4>Could be more aggressive</h4> -->
-                    <span class="text-muted"><%= link_to r.user.first_name, user_path(r.user) %>, <%= r.created_at.to_s.gsub(/\d\:\S+\s\w+/, '') %></span>
-                    <p><%= r.description %></p>
-                  </div>
-                <% end %>
-              <% end %>
-            <% end %>
+      <div class="reviews">
+        <% @scheduled_activities.each do |a| %>
+        <% a.bookings.each do |b| %>
+        <% b.reviews.each do |r| %>
+        <div class="review">
+          <div class="review-item">
+            <div class="rating">
+              <img src="star.svg" style="">
+              <img src="star.svg" style="">
+              <img src="star.svg" style="">
+              <img src="star.svg" style="">
+              <img src="star-empty.svg" style="">
+            </div>
+            <!-- <h4>Could be more aggressive</h4> -->
+            <span class="text-muted"><%= link_to r.user.first_name, user_path(r.user) %>, <%= r.created_at.to_s.gsub(/\d\:\S+\s\w+/, '') %></span>
+            <p><%= r.description %></p>
           </div>
+          <% end %>
+          <% end %>
+          <% end %>
         </div>
       </div>
     </div>
   </div>
+</div>
 
-  <% @scheduled_activities.each do |scheduled_activity| %>
-  <div class="card p-4">
-    <%= scheduled_activity.date %>
-    <%= scheduled_activity.location %>
-    <%= link_to "book this class", new_scheduled_activity_booking_path(scheduled_activity) %>
-  </div>
-  <% end %>
+<% @scheduled_activities.each do |scheduled_activity| %>
+<div class="card p-4">
+  <%= scheduled_activity.date %>
+  <%= scheduled_activity.location %>
+  <%= link_to "book this class", new_scheduled_activity_booking_path(scheduled_activity) %>
+</div>
+<% end %>
 </div>
 
 <%#= link_to "Back to list", tasks_path %>
