@@ -1,24 +1,19 @@
+<div class="container mt-4">
+<%= link_to "back home", root_path %>
 
-<div class="container">
-  <div class="my-4">
-    <%= link_to "back home", root_path, class: 'btn btn-primary' %>
-  </div>
-
-
-  <% @activity_types.each do |activity_type| %>
-    <div class="card p-4">
-      <h2><%= link_to activity_type.name, activity_type %></h2>
-      <%= link_to "Add a new class", new_scheduled_activity_path %>
-      <ul>
-        <li><%= activity_type.description %></li>
-        <li>Duration: <%= activity_type.duration %></li>
-        <li>Price:<%= activity_type.price %></li>
-        <li>Restrictions: <%= activity_type.restrictions %></li>
-        <li>Type: <%= activity_type.kind %></li>
-        <li>Sport: <%= activity_type.sport %></li>
-        <li>Number of classes: <%= activity_type.scheduled_activities.length %></li>
-      </ul>
-    </div>
+<% @activity_types.each do |activity_type| %>
+    <h2><%= link_to activity_type.name, activity_type %></h2>
+    <ul>
+      <li><%= activity_type.description %></li>
+      <li>Duration: <%= activity_type.duration %></li>
+      <li>Price:<%= activity_type.price %></li>
+      <li>Restrictions: <%= activity_type.restrictions %></li>
+      <li>Type: <%= activity_type.kind %></li>
+      <li>Sport: <%= activity_type.sport %></li>
+      <li>Number of classes: <%= activity_type.scheduled_activities.length %></li>
+    </ul>
+    <%= link_to "Add a new class", new_scheduled_activity_path %>
     <br>
-  <% end %>
+<br>
+<% end %>
 </div>

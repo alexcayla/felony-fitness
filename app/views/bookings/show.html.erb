@@ -1,0 +1,7 @@
+<div class="container">
+  <h1>booking show page</h1>
+
+  <% @booking.reviews.each do |review| %>
+    <p><%= review.description %> - <%= review.rating %> - <%= review.user.name %></p>
+  <% end %>
+</div>

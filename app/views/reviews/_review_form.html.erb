@@ -1,0 +1,11 @@
+<%= simple_form_for [@booking, @review]  do |f| %>
+  <%= f.input :description%>
+  <%= f.input :rating  %>
+  <%= f.button :submit %>
+<% end %>
+
+  <!-- how do you submit with a booking?  So where you start review, will pass params
+  If I am
+  Within scope of booking, you have add review button.  You have booking, so you can make a review.  when clicked on, you'll have ID of the booking on your universe.  when you call booking method, ou pass booking in paranthesis.
+  So you can put into controller knowing you'll get booking, and
+ -->

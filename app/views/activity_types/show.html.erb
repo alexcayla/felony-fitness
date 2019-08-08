@@ -1,5 +1,5 @@
 <%= link_to "Back to all activities", activity_types_path %>
-
+<div class="container">
 <div class="main">
   <h1><%= @activity_type.name %></h1>
   <div class="edit">
@@ -19,8 +19,12 @@
 
 
 <% @scheduled_activities.each do |scheduled_activity| %>
-  <%= scheduled_activity.date %>
-  <%= scheduled_activity.location %>
+  <div class="card p-4">
+    <%= scheduled_activity.date %>
+    <%= scheduled_activity.location %>
+    <%= link_to "book this class", new_scheduled_activity_booking_path(scheduled_activity) %>
+  </div>
 <% end %>
+</div>
 
 <%#= link_to "Back to list", tasks_path %>

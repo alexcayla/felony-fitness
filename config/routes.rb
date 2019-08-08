@@ -7,16 +7,23 @@ Rails.application.routes.draw do
 
   # Let's write the routes
 
-  resources :users do
-
-  end
+  resources :users
+  resources :instructors
 
   resources :activity_types
-  resources :scheduled_activities
 
-  resources :bookings
+  resources :scheduled_activities do
+    resources :bookings#,  only: [:index, :new, :edit, :create]
+  end
 
-  resources :reviews
+  resources :bookings, except:  [:edit, :create] do
+    resources :reviews, only: [:index, :new, :update, :edit, :create]
+  end
 
+  resources :reviews, only: [:show ]
+
+  get  '/dashboard', to: 'pages#dashboard', as: 'dashboard'
+
+  get '/activities_home', to: 'pages#activities_home', as: 'scheduled_activities_page'
 
 end

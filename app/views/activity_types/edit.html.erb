@@ -1,17 +1,15 @@
-
+<div class="container">
 
 
 <h1>Edit activity_type</h1>
-<%= form_for(@activity_type) do |f| %>
-<div class="form-group">
-  <%= f.label :name %>
-  <%= f.text_field :name, class: 'form-control' %>
-</div>
+<%= simple_form_for(@activity_type) do |f| %>
 
-<div class="form-group">
-  <%= f.label :description %>
-  <%= f.text_field :description, class: 'form-control' %>
-</div>
+    <%= f.input :name %>
+    <%= f.input :description %>
+    <%= f.input :duration %>
+    <%= f.input :price %>
+    <%= f.input :kind %>
 
-<%= f.submit class: 'btn btn-primary' %>
+  <%= f.submit class: 'btn btn-primary' %>
 <% end %>
+</div>

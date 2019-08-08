@@ -1,15 +1,18 @@
 class BookingsController < ApplicationController
 
-  def mybooking
+  def index
+    @my_bookings = Booking.where(user_id: current_user)
+  end
 
+  def show
+    @booking = Booking.find(params[:id])
   end
 
   def create
-    my_booking = Booking.new(user_id: current_user.id, scheduled_activity_id: params[:class_id])
+    my_booking = Booking.new(user_id: current_user.id, scheduled_activity_id: params[:scheduled_activity_id])
     if my_booking.save!
-      redirect_to user_path(current_user)
+      redirect_to dashboard_path
     else
-      raise
       redirect_back
     end
   end
@@ -24,6 +27,7 @@ class BookingsController < ApplicationController
 
   def destroy
     my_booking = Booking.find(params[:id])
-    redirect_to user_path
+    my_booking.destroy
+    redirect_to dashboard_path
   end
 end
