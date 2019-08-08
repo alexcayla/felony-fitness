@@ -6,18 +6,33 @@ class ActivityTypesController < ApplicationController
     #     lat: activity.latitude,
     #     lng: activity.longitude,
     #     infoWindow: render_to_string(partial: "info_window", locals: { activity: activity })
-      # }
+    #   }
     # end
   end
 
   def show
     @activity_type = ActivityType.find(params[:id])
     @scheduled_activities = ScheduledActivity.where(activity_type_id: params[:id])
-    @markers = {
-        lat: @activity_type.scheduled_activities.collect(&:latitude),
-        lng: @activity_type.scheduled_activities.collect(&:longitude),
-        infoWindow: render_to_string(partial: "info_window_3", locals: { activity_type: @activity_type })
-      }
+    @markers =  [{lat: -8.6908357, lng: 115.2312006}]
+
+
+    if  @activity_type.scheduled_activities.any?
+    @markers = @activity_type.scheduled_activities.map do |activity|
+
+        if activity.latitude.nil?
+          {lat: "-8.6908357",
+          lng: "115.2312006",
+          infoWindow: render_to_string(partial: "info_window_3", locals: { activity_type: @activity_type })}
+        else
+          {lat: activity.latitude,
+          lng: activity.longitude,
+          infoWindow: render_to_string(partial: "info_window_3", locals: { activity_type: @activity_type })}
+        end
+        # lat: @activity_type.scheduled_activities.collect(&:latitude),
+        # lng: @activity_type.scheduled_activities.collect(&:longitude),
+
+    end
+  end
   end
 
   def new
