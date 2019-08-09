@@ -1,8 +1,12 @@
-<%= simple_form_for [@booking, @review]  do |f| %>
-  <%= f.input :description%>
-  <%= f.input :rating, collection: 1..5 %>
-  <%= f.button :submit %>
-<% end %>
+
+<div class="container">
+  <%= simple_form_for [@booking, @review]  do |f| %>
+    <%= f.input :description%>
+    <%= f.input :rating, collection: 1..5 %>
+    <%= f.button :submit %>
+  <% end %>
+
+</div>
 
   <!-- how do you submit with a booking?  So where you start review, will pass params
   If I am
