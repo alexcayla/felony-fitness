@@ -97,6 +97,7 @@
 
         <div class="reviews d-none">
           <% @scheduled_activities.each do |a| %>
+          <%= link_to "delete", a, method: :delete, data: { confirm: 'Are you sure?'} %>
           <% a.bookings.each do |b| %>
           <% b.reviews.each do |r| %>
           <% @activity_type.average_rating.times do %>
