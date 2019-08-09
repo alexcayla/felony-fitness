@@ -16,7 +16,18 @@
           </div>
           <div class="col-6">
             <div class="main">
-              <p> <strong>Rating: </strong>[Average star rating]</p>
+              <p> <strong>Rating: </strong>
+              <% avg_rating = 1 %>
+              <% if @activity_type.reviews.empty? %>
+                <%= "No reviews yet" %>
+              <% else  %>
+                <% avg_rating.floor.times do %>
+                  <i class="fa fa-star" aria-hidden="true"></i>
+                <% end %>
+              <% end %>
+            </p>
+
+
               <p><%= link_to "Edit", edit_activity_type_path, class: 'btn btn-secondary' %></p>
               <div class="border mb-3"></div>
               <div class="edit" class="btn btn-info">
