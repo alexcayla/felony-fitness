@@ -1,4 +1,6 @@
 class ActivityType < ApplicationRecord
+  mount_uploader :photo, PhotoUploader
+
   has_many :scheduled_activities
   has_many :bookings, through: :scheduled_activities, source: :bookings
   has_many :reviews, through: :bookings, source: :reviews

@@ -1,17 +1,35 @@
 <div class="container">
 <h1>all</h1>
 
-<% @scheduled_activities.each do |activity| %>
 <div class="container">
-  <%= activity.activity_type.name %>
-  <%= activity.location %>
-  <%= activity.capacity %>
-  <%= activity.date %>
-  <%= link_to "edit", edit_scheduled_activity_path(activity.id) %>
-  <%= link_to "delete", activity, method: :delete, data: { confirm: 'Are you sure?'} %>
-  <%= link_to "show", scheduled_activity_path(activity.id) %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Location</th>
+        <th>Capacity</th>
+        <th>Date</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @scheduled_activities.each do |activity| %>
+      <tr>
+        <td><%= activity.activity_type.name %></td>
+        <td><%= activity.location %></td>
+        <td><%= activity.capacity %></td>
+        <td><%= activity.date.strftime("%m/%d/%y - %I:%M %p") %></td>
+        <td>
+          <%= link_to "edit", edit_scheduled_activity_path(activity.id) %>
+          <%= link_to "delete", activity, method: :delete, data: { confirm: 'Are you sure?'} %>
+          <%= link_to "show", scheduled_activity_path(activity.id) %>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
 </div>
-<% end %>
+
 
 <div
   id="map"

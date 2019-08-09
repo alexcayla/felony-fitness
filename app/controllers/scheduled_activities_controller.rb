@@ -30,7 +30,7 @@
     @activity_type = ActivityType.find(params[:scheduled_activity][:activity_type_id])
     @scheduled_activity.user = current_user
     if @scheduled_activity.save
-      redirect_to scheduled_activities_path
+      redirect_to activity_type_path(@activity_type)
     else
       render "new"
     end
@@ -44,7 +44,7 @@
   def update
     @scheduled_activity = ScheduledActivity.find(params[:id])
     @scheduled_activity.update(activity_params)
-    redirect_to scheduled_activity_path(@scheduled_activity)
+    redirect_to activity_type_path(@scheduled_activity.activity_type_id)
   end
 
   def destroy

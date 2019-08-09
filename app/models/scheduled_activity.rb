@@ -14,6 +14,7 @@ class ScheduledActivity < ApplicationRecord
 
   validates :activity_type_id, presence: true
 
+
   def instructor
     self.user.instructor
   end
