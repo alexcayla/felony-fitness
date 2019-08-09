@@ -16,4 +16,9 @@ class ActivityType < ApplicationRecord
   def find_reviews
     self.bookings.collect(&:review)
   end
+
+  def average_rating
+    self.reviews.pluck(:rating).reduce(:+) / self.reviews.size
+  end
+
 end
