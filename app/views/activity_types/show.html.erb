@@ -16,8 +16,14 @@
           </div>
           <div class="col-6">
             <div class="main">
-              <p> <strong>Rating: </strong>[Average star rating]</p>
-              <p><%= link_to "Edit", edit_activity_type_path, class: 'btn btn-secondary' %></p>
+              <!-- <p> <strong>Rating: activity_type.average(:ratings)</strong> -->
+                <% if @activity_type.reviews.empty? %>
+                  <%= "No reviews yet" %>
+                <% else  %>
+                  <% @activity_type.average_rating.times do %>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                  <% end %>
+                <% end %>
               <div class="border mb-3"></div>
               <div class="edit" class="btn btn-info">
               </div>
@@ -83,23 +89,23 @@
 
         <div class="reviews d-none">
           <% @scheduled_activities.each do |a| %>
-            <% a.bookings.each do |b| %>
-              <% b.reviews.each do |r| %>
-                <div class="review">
-                  <div class="review-item">
-                    <div class="rating">
-                      <img src="star.svg" style="">
-                      <img src="star.svg" style="">
-                      <img src="star.svg" style="">
-                      <img src="star.svg" style="">
-                      <img src="star-empty.svg" style="">
-                    </div>
-                    <!-- <h4>Could be more aggressive</h4> -->
-                    <span class="text-muted"><%= link_to r.user.first_name, user_path(r.user) %>, <%= r.created_at.to_s.gsub(/\d\:\S+\s\w+/, '') %></span>
-                    <p><%= r.description %></p>
-                  </div>
-                <% end %>
-              <% end %>
+          <% a.bookings.each do |b| %>
+          <% b.reviews.each do |r| %>
+          <div class="review">
+            <div class="review-item">
+              <div class="rating">
+                <img src="star.svg" style="">
+                <img src="star.svg" style="">
+                <img src="star.svg" style="">
+                <img src="star.svg" style="">
+                <img src="star-empty.svg" style="">
+              </div>
+              <!-- <h4>Could be more aggressive</h4> -->
+              <span class="text-muted"><%= link_to r.user.first_name, user_path(r.user) %>, <%= r.created_at.to_s.gsub(/\d\:\S+\s\w+/, '') %></span>
+              <p><%= r.description %></p>
+            </div>
+            <% end %>
+            <% end %>
             <% end %>
           </div>
         </div>
