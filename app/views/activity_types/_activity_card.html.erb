@@ -1,5 +1,7 @@
   <div class="card my-4 pt-3">
-    <h4><%= link_to "#{activity_type.name} - #{activity_type.duration}min", activity_type %></h4>
+    <p class="activity-card-header">
+      <%= link_to "#{activity_type.name} - #{activity_type.duration}min", activity_type %>
+    </p>
 
     <dl class="row">
       <dd class="col-12"><%= activity_type.description %></dd>

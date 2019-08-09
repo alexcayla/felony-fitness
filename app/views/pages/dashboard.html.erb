@@ -1,43 +1,62 @@
-<div class="container">
-<h1>Hi <%= current_user.first_name %>!</h1>
-<%= link_to "Edit", edit_user_path(current_user), class: 'btn btn-primary' %>
-Email: <%= current_user.email %> <br>
-User id: <%= current_user.id %> <br><br>
-<p class="alert-success p-2">
-  <% if current_user.instructor %>
-    <%= link_to "Review your instructor profile", instructor_path(@user.instructor.id)%>
-  <% end %>
-</p>
 
-<%= cl_image_tag @user.photo, height: 300, width: 400, crop: :fill %>
-
-<br>
-<% unless current_user.instructor %>
-<p class="alert-success p-2">Fit felon?
-  <%= link_to "Become an instructor!", new_instructor_path %>
-</p>
-<% end %>
-
-<h2>Upcoming classes</h2>
-  <% if @upcoming_bookings.any? %>
-      <% @upcoming_bookings.each do |booking| %>
-      <div class="card m-2 p-2 bg-light">
-        <%= booking.scheduled_activity.name %>
-        <p><%= booking.date %></p>
-        <%= link_to "Cancel this booking", booking_path(booking), method: :delete, data: { confirm: "Are you sure?" } %>
-      </div>
+<section class="clean-block clean-catalog dark">
+  <div class="container">
+    <div class="block-heading">
+       <h2 class="text-info">Dashboard</h2>
+    </div>
+  <div class="box">
+  <div class="row">
+    <p class="alert-success p-2">
+      <% if current_user.instructor %>
+        <%= link_to "Review your instructor profile", instructor_path(@user.instructor.id)%>
       <% end %>
-    <% else %>
-      <%= "You have no upcoming bookings" %>
-  <% end %>
+    </p>
+      <% unless current_user.instructor %>
+        <p class="alert-success p-2">Fit felon?
+        <%= link_to "Become an instructor!", new_instructor_path %>
+        </p>
+      <% end %>
+    </p>
+  </div>
+  <div class="row">
+    <div class="col-3">
+      <%= cl_image_tag(@user.photo, :transformation=>[
+          {:width=>400, :height=>400, :gravity=>"face", :radius=>"max", :crop=>"crop"},
+          {:width=>200, :crop=>"scale"}]) %>
+    </div>
+    <div class="col-8">
+      <h1>Hi <%= current_user.first_name %>!</h1>
+      <strong>Email: </strong><%= current_user.email %>
+    </div>
+    <div class="col-1">
+      <%= link_to "Edit", edit_user_path(current_user), class: 'btn btn-secondary' %>
+    </div>
+  </div>
 
-<h2>Past classes</h2>
+    <div class="row">
+      <div class="col-9 offset-3">
+          <h2>Upcoming classes</h2>
+          <% if @upcoming_bookings.any? %>
+            <% @upcoming_bookings.each do |booking| %>
+              <div class="card m-2 p-2 bg-light">
+                <%= booking.scheduled_activity.name %>
+                <p><%= booking.date %></p>
+                <%= link_to "Cancel this booking", booking_path(booking), method: :delete, data: { confirm: "Are you sure?" } %>
+              </div>
+            <% end %>
+          <% else %>
+            <%= "You have no upcoming bookings" %>
+        <% end %>
 
-<% @past_bookings.each do |booking| %>
-<div class="card m-2 p-2 bg-light">
-  <%= booking.scheduled_activity.name %>
-  <p><%= booking.date.strftime("%m/%d/%y - %I:%M %p") %></p>
-  <p><%= link_to "Review this booking", new_booking_review_path(booking) %></p>
-</div>
-<% end %>
-</div>
+        <h2>Past classes</h2>
+        <% @past_bookings.each do |booking| %>
+          <div class="card m-2 p-2 bg-light">
+            <%= booking.scheduled_activity.name %>
+            <p><%= booking.date.strftime("%m/%d/%y - %I:%M %p") %></p>
+            <p><%= link_to "Review this booking", new_booking_review_path(booking) %></p>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</section>

@@ -15,7 +15,7 @@ class ActivityTypesController < ApplicationController
 
   def show
     @activity_type = ActivityType.find(params[:id])
-    @scheduled_activities = ScheduledActivity.where(activity_type_id: params[:id])
+    @scheduled_activities = ScheduledActivity.where(activity_type_id: params[:id]).order(:date)
     @markers =  [{lat: -8.6908357, lng: 115.2312006}]
     @upcoming_activity = @scheduled_activities.order(date: :desc).first
 

@@ -1,0 +1,20 @@
+<section class="clean-block clean-catalog dark">
+<div class="container">
+  <div class="block-heading">
+    <h2 class="text-info">Scheduled Activity</h2>
+    <p><%#= @activity_type.description %></p>
+  </div>
+  <div class="app-nav-link">
+    <%= link_to "< Back", :back %>
+  </div>
+  <div class="box">
+  <%= simple_form_for [@scheduled_activity] do |f| %>
+  <%= f.association :activity_type, collection: @activity_types %>
+  <%= f.input :date %>
+  <%= f.input :location %>
+  <%= f.input :capacity %>
+  <%= f.button :submit, class:"btn btn-primary"%>
+  <% end %>
+  </div>
+</div>
+</section>
