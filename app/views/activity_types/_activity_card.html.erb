@@ -1,7 +1,11 @@
 <div class="clean-product-item my-4 pt-3">
 
   <div class="image">
-      <%= cl_image_tag scheduled_activity.activity_type.photo, width: 250, crop: :fill %>
+      <% if scheduled_activity.activity_type.photo.present? %>
+        <%= cl_image_tag scheduled_activity.activity_type.photo, width: 250, crop: :fill %>
+      <% else %>
+        <%= image_tag 'activities/yoga2.jpg', width: 250 %>
+      <% end %>
   </div>
   <%= link_to "#{scheduled_activity.name} - #{scheduled_activity.activity_type.duration} min",
   activity_type_path(scheduled_activity.activity_type) %>
