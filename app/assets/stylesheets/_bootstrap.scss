@@ -11127,9 +11127,9 @@ html {
 
 .clean-product-item {
   padding: 20px;
-  border-right: none;
-  border-bottom: 1px solid #e8e6e6;
-  /*height: 100%*/
+  // border: 1px solid #e8e6e6;
+  border-radius: 3px;
+  box-shadow: 5px 8px 30px 3px rgba(0,0,0,0.86);
 }
 
 .clean-product-item .image {
@@ -11764,10 +11764,7 @@ html {
   .clean-block.clean-catalog .products .clean-product-item .product-name {
     text-align: left
   }
-  .clean-block.clean-catalog .products .row:first-of-type {
-    border-top: 1px solid #e8e6e6;
-    border-left: 1px solid #e8e6e6
-  }
+
   .clean-block.clean-catalog .products .clean-product-item {
     border-right: 1px solid #e8e6e6
   }

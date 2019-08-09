@@ -9,17 +9,13 @@
           </div>
             <div class="container">
                 <div class="content">
-                </div>
-
                         <div class="col-12">
                             <div class="products">
                                 <div>
                                   <div class="row no-gutters mt-4">
                                       <div class="card-grid-3c">
-
                                         <% @scheduled_activities.each do |scheduled_activity| %>
                                           <div class="clean-product-item">
-                                            <%= scheduled_activity.name %>
                                               <div class="image">
                                                 <%= link_to '#' do %>
                                                   <%= image_tag("activities/jailbreak1.jpg", class: 'img-fluid d-block mx-auto') %>
@@ -30,8 +26,13 @@
                                                 <%= link_to scheduled_activity.name, activity_type_path(scheduled_activity.activity_type) %>
                                               </div>
                                               <div class="about">
-                                                  <div class="rating"><img src="star.svg" /><img src="star.svg" /><img src="star.svg" /><img src="star-half-empty.svg" /><img src="star-empty.svg" /></div>
-                                                  <div class="price"></div>
+                                                  <% if scheduled_activity.activity_type.reviews.empty? %>
+                                                    <%= "No reviews yet" %>
+                                                  <% else  %>
+                                                    <% scheduled_activity.activity_type.average_rating.times do %>
+                                                  <i class="fa fa-star" aria-hidden="true"></i>
+                                                  <% end %>
+                                                  <% end %>
                                               </div>
                                           </div>
                                           <% end %>
