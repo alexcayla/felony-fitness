@@ -1,0 +1,9 @@
+<%= simple_form_for @instructor do |f|%>
+  <%= f.input :instructor_photo %>
+  <%= f.input :instructor_photo_cache, as: :hidden %>
+  <%#= f.input :instructor_photo, hint: 'A nice mugshot?' %>
+  <%= f.input :bio %>
+  <%= f.input :qualification %>
+  <%= f.input :rapsheet %>
+  <%= f.button :submit, 'Submit', class: 'btn btn-primary'%>
+<% end %>

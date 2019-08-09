@@ -1,0 +1,25 @@
+  <div class="card my-4 pt-3">
+    <p class="activity-card-header">
+      <%= link_to "#{activity_type.name} - #{activity_type.duration}min", activity_type %>
+    </p>
+
+    <dl class="row">
+      <dd class="col-12"><%= activity_type.description %></dd>
+
+      <dt class="col-4 text-right">Duration:</dt>
+      <dd class="col-2"><%= activity_type.duration %></dd>
+
+      <dt class="col-2 text-right">Price:</dt>
+      <dd class="col-4"><%= activity_type.price %></dd>
+
+      <dt class="col-4 text-right">Type:</dt>
+      <dd class="col-2"><%= activity_type.kind %></dd>
+
+      <dt class="col-2 text-right">Sport:</dt>
+      <dd class="col-4"><%= activity_type.sport %></dd>
+
+      <dt class="col-4 text-right">Restrictions:</dt>
+      <dd class="col-8"><%= activity_type.restrictions %></dd>
+    </dl>
+  </div>
+
