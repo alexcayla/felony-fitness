@@ -3,7 +3,8 @@ class ActivityTypesController < ApplicationController
 
   def index
 
-    @activity_types = ActivityType.all
+    @scheduled_activities = ScheduledActivity.all.order(:date)
+
     # @markers = @activity_types.map do |activity|
     #   {
     #     lat: activity.latitude,

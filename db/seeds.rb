@@ -88,6 +88,7 @@ end
 20.times do
   puts "Creating fake scheduled_activities"
   act_type = activity_types.sample
+  p Time.now
   sched = ScheduledActivity.new(
     date: Date.new,
     user: users.sample,
@@ -99,6 +100,7 @@ end
   scheduled_activities << sched
   sched.errors.full_messages
   sched.save!
+  p Time.now
 end
 
 50.times do

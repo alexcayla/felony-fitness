@@ -3,10 +3,11 @@
   <div class="block-heading">
     <h2 class="text-info">Available classes</h2>
   </div>
+
   <div class="content">
     <div class="products pl-5 card-grid-3c">
-      <% @activity_types.each do |activity_type| %>
-          <%= render partial: 'activity_card', locals: {activity_type: activity_type} %>
+      <% @scheduled_activities.each do |scheduled_activity| %>
+          <%= render partial: 'activity_card', locals: {scheduled_activity: scheduled_activity} %>
       <% end %>
     </div>
   </div>
