@@ -1,5 +1,18 @@
 <div class="container">
 <h1>all</h1>
+<div class="searchable">
+    <%= form_tag scheduled_activities_path, method: :get do %>
+  <%= text_field_tag :query,
+    params[:query],
+    class: "form-control",
+    placeholder: "Name"
+  %>
+  <%= submit_tag "Search", class: "btn btn-primary mt-2" %>
+<% end %>
+<div>
+  <%= link_to "Show all", scheduled_activities_path, class:"btn btn-primary my-2" %>
+</div>
+  </div>
 
 <div class="container">
   <table class="table">

@@ -1,19 +1,21 @@
-class ScheduledActivitiesController < ApplicationController
+ class ScheduledActivitiesController < ApplicationController
   def index
-    @scheduled_activities = ScheduledActivity.geocoded
-    @markers = @scheduled_activities.map do |activity|
-      {
-        lat: activity.latitude,
-        lng: activity.longitude,
-        infoWindow: render_to_string(partial: "info_window", locals: { activity: activity })
-      }
+    if params[:query].present?
+      sql_query = " \
+        scheduled_activities.location ILIKE :query \
+        OR activity_types.name ILIKE :query \
+      "
+      @scheduled_activities = ScheduledActivity.joins(:activity_type).where(sql_query, query: "%#{params[:query]}%")
+    else
+      @scheduled_activities = ScheduledActivity.all
     end
+
   end
 
-  def show
-    @scheduled_activity = ScheduledActivity.find(params[:id])
-    @scheduled_activities = ScheduledActivity.where(activity_type_id: params[:activity_type])
-    @markers = {
+   def show
+     @scheduled_activity = ScheduledActivity.find(params[:id])
+     @scheduled_activities = ScheduledActivity.where(activity_type_id: params[:activity_type])
+     @markers = {
         lat: @scheduled_activity.latitude,
         lng: @scheduled_activity.longitude,
         infoWindow: render_to_string(partial: "info_window_2", locals: { scheduled_activity: @scheduled_activity })
