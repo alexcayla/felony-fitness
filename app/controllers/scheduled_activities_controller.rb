@@ -1,4 +1,4 @@
-class ScheduledActivitiesController < ApplicationController
+ class ScheduledActivitiesController < ApplicationController
   def index
     @scheduled_activities = ScheduledActivity.geocoded
     @markers = @scheduled_activities.map do |activity|
