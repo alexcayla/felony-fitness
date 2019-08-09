@@ -1,0 +1,48 @@
+
+<section class="clean-block clean-catalog dark">
+  <div class="container">
+    <div class="block-heading">
+      <h1 class="text-info"><%= @instructor.name%></h1>
+    </div>
+
+    <div class="box">
+      <div class="mb-5">
+        <div class="row">
+        <div class="col-5">
+          <%= cl_image_tag @instructor.instructor_photo, :transformation=>[
+          {:width=>400, :height=>300, :gravity=>"face", :crop=>"fill"}] %>
+        </div>
+        <div class="d-flex col-6 align-items-center">
+          <div>
+            <%= link_to "Edit", edit_instructor_path, class: 'btn btn-secondary mb-3' %>
+            <ul class="list-unstyled">
+              <li class="list-group-item"><%= @instructor.bio %></li>
+              <li class="list-group-item"><strong>Qualifications: </strong><%= @instructor.qualification %></li>
+              <li class="list-group-item"><strong>Rapsheet: </strong><%= @instructor.rapsheet %></li>
+            </ul>
+          </div>
+         </div>
+       </div>
+     </div>
+
+    <h2>Classes</h2>
+    <div class="d-flex">
+      <% @unique_activity_types.each do |type| %>
+        <div class="card col-3 p-4 my-3 mr-4">
+          <%= link_to "#{type.name} - #{type.duration} minutes", activity_type_path %>
+          <%= type.description %>
+        </div>
+      <% end %>
+    </div>
+
+
+    <h2>Upcoming classes</h2>
+    <% @scheduled_activities.each do |activity| %>
+      <div class="card p-4 my-3">
+        <%= activity.name %>
+        <%= activity.date %>
+      </div>
+    <% end %>
+  </div>
+  </div>
+</section>

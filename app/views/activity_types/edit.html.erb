@@ -3,7 +3,8 @@
 
 <h1>Edit activity_type</h1>
 <%= simple_form_for(@activity_type) do |f| %>
-
+    <%= f.input :photo %>
+    <%= f.input :photo_cache, as: :hidden %>
     <%= f.input :name %>
     <%= f.input :description %>
     <%= f.input :duration %>

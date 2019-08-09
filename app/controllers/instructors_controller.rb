@@ -1,12 +1,14 @@
 class InstructorsController < ApplicationController
-  def index
+  skip_before_action :authenticate_user!, only: [:index, :show]
 
-  @instructors = Instructor.all
+  def index
+    @instructors = Instructor.all
   end
 
   def show
     @instructor = Instructor.find(params[:id])
     @scheduled_activities = ScheduledActivity.where(instructor_id: params[:id])
+    @unique_activity_types = @instructor.activity_types.uniq
   end
 
   def new
@@ -15,8 +17,9 @@ class InstructorsController < ApplicationController
 
   def create
     @instructor = Instructor.new(instructor_params)
+    user = current_user
     if @instructor.save
-      redirect_to @instructor
+      redirect_to dashboard_path # or, redirect_to @instructor
     else
       render :new
     end
@@ -44,6 +47,12 @@ class InstructorsController < ApplicationController
   private
 
   def instructor_params
-    params.require(:user_id).permit(:instructor_photo, :bio, :qualification, :rapsheet)
+    params.require(:instructor).permit(:instructor_photo, :bio, :qualification, :rapsheet)
   end
 end
+#   private
+
+#   def instructor_params
+#     params.require(:user_id).permit(:instructor_photo, :bio, :qualification, :rapsheet)
+#   end
+# end

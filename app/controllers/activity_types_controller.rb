@@ -1,5 +1,8 @@
 class ActivityTypesController < ApplicationController
+  skip_before_action :authenticate_user!, only: [:index, :show]
+
   def index
+
     @activity_types = ActivityType.all
     # @markers = @activity_types.map do |activity|
     #   {
@@ -12,9 +15,9 @@ class ActivityTypesController < ApplicationController
 
   def show
     @activity_type = ActivityType.find(params[:id])
-    @scheduled_activities = ScheduledActivity.where(activity_type_id: params[:id])
+    @scheduled_activities = ScheduledActivity.where(activity_type_id: params[:id]).order(:date)
     @markers =  [{lat: -8.6908357, lng: 115.2312006}]
-
+    @upcoming_activity = @scheduled_activities.order(date: :desc).first
 
     if  @activity_type.scheduled_activities.any?
     @markers = @activity_type.scheduled_activities.map do |activity|
@@ -70,6 +73,6 @@ class ActivityTypesController < ApplicationController
   private
 
   def activity_type_params
-    params.require(:activity_type).permit(:name, :description, :duration, :price, :restrictions, :sport, :kind)
+    params.require(:activity_type).permit(:name, :description, :duration, :price, :restrictions, :sport, :kind, :photo)
   end
 end

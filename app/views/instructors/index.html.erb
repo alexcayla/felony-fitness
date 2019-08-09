@@ -74,8 +74,9 @@
                       <div class="col-12 col-md-6 col-lg-4">
                         <% @instructors.each do |instructor| %>
                           <div class="bean lean-product-item">
-                            <%= instructor.name %>
+                            <%= link_to instructor.name, instructor_path(instructor) %>
                               <div class="image">
+
                                 <%= link_to '#' do %>
                                   <%= image_tag("convicts/criminal.jpg", class: 'img-fluid d-block mx-auto') %>
                                     <% end%>

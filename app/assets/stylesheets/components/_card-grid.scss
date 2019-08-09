@@ -1,0 +1,11 @@
+.card-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 32px
+}
+
+.card-grid-3c {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 32px
+}

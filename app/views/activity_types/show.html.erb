@@ -1,62 +1,82 @@
-<%#= link_to "Back to all activities", activity_types_path %>
+<section class="clean-block clean-catalog dark">
 <div class="container">
+  <div class="block-heading">
+    <h2 class="text-info"><%= @activity_type.name %></h2>
+    <p><%= @activity_type.description %></p>
+  </div>
+  <div class="app-nav-link">
+    <%= link_to "< Back to activities", activity_types_path %>
+  </div>
   <div class="box">
     <div class="mb-5">
+      <!-- Activty image and action -->
       <div class="row">
         <div class="col-6">
-          <div class="gallery"></div>
+            <%= cl_image_tag @activity_type.photo, height: 290, width: 500, crop: :fill %>
         </div>
         <div class="col-6">
           <div class="main">
-            <%= link_to @activity_type.name, '#', class: 'acturl' %>
-            <p>Star rating goes here later</p>
+            <p> <strong>Rating: </strong>[Average star rating]</p>
+            <p><%= link_to "Edit", edit_activity_type_path, class: 'btn btn-secondary' %></p>
             <div class="border mb-3"></div>
-            <div class="edit">
-              <%#= link_to 'Edit this activity_type', edit_path %>
+            <div class="edit" class="btn btn-info">
             </div>
           </div>
-
-          <div class="activity_type">
-            <p>Next available class:</p>
-            <p>Placeholder for scheduled time</p>
-            <div class="btn btn-primary one">Book now!</div>
+          <div class="card p-4">
+            <strong>Next available class:</strong>
+            <p><%= render partial: '/shared/date/fdate_future', locals: {date: @upcoming_activity.date} %></p>
+            <%= link_to "Book now", new_scheduled_activity_booking_path(@upcoming_activity), class: "btn btn-primary one" %>
           </div>
           <div class="border mb-3"></div>
-          <h2>Schedule</h2>
 
           <% if @scheduled_activities.length == 0 %>
-          <%= link_to "Schedule a new class", new_scheduled_activity_path(ActivityType), class: 'btn btn-primary' %>
+          <%= link_to "Schedule a new class", new_scheduled_activity_path, class: 'btn btn-primary' %>
           <% end %>
         </div>
       </div>
     </div>
+    <!-- Activity schedules, locations and reviews -->
+
     <div class="product-info">
       <ul class="nav nav-tabs">
         <li class="nav-item">
-          <a class="nav-link active desc-link" href="#">Description</a>
+          <a class="nav-link active sched-link" href="#">Schedule</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link sched-link" href="#">Schedule</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link loc-link" href="#">Location</a>
+          <a class="nav-link loc-link" href="#">Locations</a>
         </li>
         <li class="nav-item">
           <a class="nav-link rev-link" href="#" tabindex="-1">Reviews</a>
         </li>
       </ul>
-      <div class="description">
-        Description
-        <%= @activity_type.description %>
-        <img src="" alt="Placeholder">
+      <div class="activity-actions mt-4">
+        <%= link_to "Schedule a new activity", new_scheduled_activity_path(ActivityType), class: 'btn btn-secondary' %>
       </div>
-      <div class="schedule">
-        Schedule
-        <div class="table">
-          <th><strong>Date</strong></th> <th><strong>Time</strong></th>
+      <div class="schedule py-4">
+          <% @scheduled_activities.each do |scheduled_activity| %>
+          <div class="card my-3">
+            <div class="row p-3">
 
-        </div>
+              <div class="col-9">
+                <ul class="list-unstyled">
+                  <li> <%= render partial: '/shared/date/fdate_future', locals: {date: scheduled_activity.date} %></li>
+                  <li><%= scheduled_activity.location %></li>
+                  <li><strong>Places left: <%= scheduled_activity.capacity %>
+                  </strong></li>
+                </ul>
+              </div>
+
+              <div class="col-3">
+                <%= link_to "Book this class", new_scheduled_activity_booking_path(scheduled_activity), class: 'btn btn-primary' %>
+                <%= link_to "Edit", edit_scheduled_activity_path(scheduled_activity), class: 'btn btn-secondary' %>
+              </div>
+
+              </div>
+            </div>
+            <% end %>
+            </div>
       </div>
+    </div>
       <div class="location">
         Location
         <div
@@ -93,14 +113,7 @@
     </div>
   </div>
 </div>
+</section>
 
-<% @scheduled_activities.each do |scheduled_activity| %>
-<div class="card p-4">
-  <%= scheduled_activity.date %>
-  <%= scheduled_activity.location %>
-  <%= link_to "book this class", new_scheduled_activity_booking_path(scheduled_activity) %>
-</div>
-<% end %>
-</div>
 
 <%#= link_to "Back to list", tasks_path %>
