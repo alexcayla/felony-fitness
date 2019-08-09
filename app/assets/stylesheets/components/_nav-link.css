@@ -1,0 +1,14 @@
+.nav-item a:hover{
+  text-decoration: none;
+  color: #9b9898;
+}
+
+.nav-item {
+  padding: 3px;
+  margin: 3px;
+}
+
+.nav-item a {
+
+  color: #161616;
+}
