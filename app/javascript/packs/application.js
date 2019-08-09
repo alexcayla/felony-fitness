@@ -6,13 +6,10 @@ import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
 
 
 import { initMapbox } from '../plugins/init_mapbox';
-
-initMapbox();
-// const description = document.querySelector(".description");
-// const location = document.querySelector(".location");
-// const review = document.querySelector(".review");
-// const schedule = document.querySelector(".schedule");
-
 import { initAutocomplete } from '../plugins/init_autocomplete';
+import { tabs } from '../components/tab';
+
+tabs();
+initMapbox();
 initAutocomplete();
 
