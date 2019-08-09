@@ -16,48 +16,51 @@
           </div>
           <div class="col-6">
             <div class="main">
-              <p> <strong>Rating: </strong>
-              <% avg_rating = 1 %>
-              <% if @activity_type.reviews.empty? %>
+              <!-- <p> <strong>Rating: activity_type.average(:ratings)</strong> -->
+                <% if @activity_type.reviews.empty? %>
                 <%= "No reviews yet" %>
-              <% else  %>
-                <% avg_rating.floor.times do %>
-                  <i class="fa fa-star" aria-hidden="true"></i>
+                <% else  %>
+                <% @activity_type.average_rating.times do %>
+                <i class="fa fa-star" aria-hidden="true"></i>
                 <% end %>
-              <% end %>
-            </p>
-
-
+                <% end %>
+                <div class="border mb-3"></div>
+                <div class="edit" class="btn btn-info">
+                </div>
+              
               <p><%= link_to "Edit", edit_activity_type_path, class: 'btn btn-secondary' %></p>
               <div class="border mb-3"></div>
               <div class="edit" class="btn btn-info">
+                
               </div>
-            </div>
-            <div class="card p-4">
-              <strong>Next available class:</strong>
-              <p><%= render partial: '/shared/date/fdate_future', locals: {date: @upcoming_activity.date} %></p>
-              <%= link_to "Book now", new_scheduled_activity_booking_path(@upcoming_activity), class: "btn btn-primary one" %>
-            </div>
-            <div class="border mb-3"></div>
+              <div class="card p-4">
+                <strong>Next available class:</strong>
+                <p><%= render partial: '/shared/date/fdate_future', locals: {date: @upcoming_activity.date} %></p>
+                <%= link_to "Book now", new_scheduled_activity_booking_path(@upcoming_activity), class: "btn btn-primary one" %>
+              </div>
+              <div class="border mb-3"></div>
 
-            <% if @scheduled_activities.length == 0 %>
-            <%= link_to "Schedule a new class", new_scheduled_activity_path, class: 'btn btn-primary' %>
-            <% end %>
+              <% if @scheduled_activities.length == 0 %>
+              <%= link_to "Schedule a new class", new_scheduled_activity_path, class: 'btn btn-primary' %>
+              <% end %>
+            </div>
           </div>
         </div>
-      </div>
-      <!-- Activity schedules, locations and reviews -->
+        <!-- Activity schedules, locations and reviews -->
 
-      <div class="product-info">
-        <ul class="nav nav-tabs">
-          <li class="nav-item nav-link active sched-link">Schedule</li>
-          <li class="nav-item nav-link loc-link">Location</li>
-          <li class="nav-item nav-link rev-link">Reviews</li>
-        </ul>
-        <div class="activity-actions mt-4">
-          <%= link_to "Schedule a new activity", new_scheduled_activity_path(ActivityType), class: 'btn btn-secondary' %>
-        </div>
-        <div class="schedule py-4">
+        <div class="product-info">
+          <ul class="nav nav-tabs">
+            <li class="nav-item nav-link active sched-link">Schedule</li>
+            <li class="nav-item nav-link loc-link">Location</li>
+            <li class="nav-item nav-link rev-link">Reviews</li>
+          </ul>
+
+          <div class="schedule py-4">
+           <div class="activity-actions mt-4">
+            <% if current_user.instructor %>
+              <%= link_to "Schedule a new activity", new_scheduled_activity_path(ActivityType), class: 'btn btn-secondary' %>
+            <% end %>
+          </div>
           <% @scheduled_activities.each do |scheduled_activity| %>
           <div class="card my-3">
             <div class="row p-3">
@@ -94,29 +97,25 @@
 
         <div class="reviews d-none">
           <% @scheduled_activities.each do |a| %>
-            <% a.bookings.each do |b| %>
-              <% b.reviews.each do |r| %>
-                <div class="review">
-                  <div class="review-item">
-                    <div class="rating">
-                      <img src="star.svg" style="">
-                      <img src="star.svg" style="">
-                      <img src="star.svg" style="">
-                      <img src="star.svg" style="">
-                      <img src="star-empty.svg" style="">
-                    </div>
-                    <!-- <h4>Could be more aggressive</h4> -->
-                    <span class="text-muted"><%= link_to r.user.first_name, user_path(r.user) %>, <%= r.created_at.to_s.gsub(/\d\:\S+\s\w+/, '') %></span>
-                    <p><%= r.description %></p>
-                  </div>
-                <% end %>
-              <% end %>
-            <% end %>
+          <% a.bookings.each do |b| %>
+          <% b.reviews.each do |r| %>
+          <% @activity_type.average_rating.times do %>
+          <i class="fa fa-star" aria-hidden="true"></i>
+          <% end %>
+          <br>
+          <!-- <h4>Could be more aggressive</h4> -->
+          <span class="text-muted">
+            <%= link_to r.user.first_name, user_path(r.user) %>, <%= r.created_at.to_s.gsub(/\d\:\S+\s\w+/, '') %></span>
+            <p><%= r.description %></p>
           </div>
+          <% end %>
+          <% end %>
+          <% end %>
         </div>
       </div>
     </div>
   </div>
+</div>
 </section>
 
 
