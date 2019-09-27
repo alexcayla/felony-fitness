@@ -8,7 +8,9 @@ gem 'puma'
 gem 'rails', '5.2.3'
 gem 'redis'
 gem "algoliasearch-rails"
-gem 'devise'
+gem 'devise', ">= 4.7.1"
+gem "nokogiri", ">= 1.10.4"
+
 
 gem 'autoprefixer-rails'
 gem 'font-awesome-sass', '~> 5.6.1'
